@@ -64,6 +64,32 @@ public:
         }
     }
 
+    // Function for insert in middle or any position
+    void push_Middle(int value, int pos)
+    {
+        if (pos < 0)
+        {
+            cout << "Invalid Position." << endl;
+            return;
+        }
+
+        if (pos == 0)
+        {
+            pushFront(value);
+            return;
+        }
+
+        Node *temp = head;
+        for (int i = 0; i < pos - 1; i++)
+        {
+            temp = temp->next;
+        }
+
+        Node *newNode = new Node(value);
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+
     // Function to delete from first
     void popFront()
     {
@@ -133,10 +159,14 @@ int main()
     l.pushBack(5);
     l.pushBack(6);
     l.pushBack(7);
+    l.pushBack(8);
+    l.pushBack(9);
 
     l.popFront();
 
     l.popback();
+
+    l.push_Middle(9, 3);
 
     l.displayList();
 
